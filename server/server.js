@@ -7,6 +7,10 @@ import productRout from './ROUTER/productRout.js'
 import stripeRout from './ROUTER/Stripe.js'
 import cookieParser from "cookie-parser";
 import bodyParser from 'body-parser'
+import path from 'path'
+
+
+const __dirname = path.resolve();
 
 dotenv.config();
 const app = express();
@@ -20,7 +24,11 @@ app.use(`/api/category`,categoryRout)
 app.use('/api/product',productRout)
 app.use('/api/stripe',stripeRout)
 
+app.use(express.static(path.join(__dirname, `/client/dist`)));
 
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})
 
 const PORT = process.env.PORT || 4040
 app.listen(PORT,()=>{
