@@ -26,8 +26,11 @@ app.use('/api/stripe',stripeRout)
 
 app.use(express.static(path.join(__dirname, `/client/dist`)));
 
-app.get('*',(req,res)=>{
+/*app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
+})*/
+app.get('*',(req,res)=>{
+    res.send({message:"Server is Wokring", success:false})
 })
 
 const PORT = process.env.PORT || 4040
