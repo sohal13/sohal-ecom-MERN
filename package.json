@@ -4,7 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"nodemon server/server.js\" \"stripe listen --forward-to localhost:4040/api/stripe/webhook\"",
+    "dev": "concurrently \"nodemon server/server.js\" \"stripe listen --forward-to https://sohal-ecom-mern.onrender.com/api/stripe/webhook\"",
     "start": "node server/server.js",
     "build": "npm run build-backend && npm run build-frontend",
     "build-backend": "npm install",
