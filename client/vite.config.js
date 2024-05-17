@@ -6,7 +6,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'http://localhost:4040/',
+        target:'https://sohal-ecom-mern.onrender.com/',
       secure:false,
       server:{
         host:true
