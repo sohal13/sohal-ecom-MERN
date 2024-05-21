@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const [allproduct, setAllProduct] = useState([]);
     const [loading, setLoading] = useState(false)
     const { currentUser } = useSelector(state => state.user);
@@ -16,7 +18,7 @@ const Products = () => {
     const getAllProducts = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`/api/product/getall`);
+            const { data } = await axios.get(`${API_BASE_URL}/product/getall`);
             if (data.success === false) {
                 setLoading(false)
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
@@ -40,7 +42,7 @@ const Products = () => {
     const confirmlogout = window.prompt("type Your 'Email' To Delete This Product");
     if (confirmlogout === currentUser.email) {
     try{
-        const res = await axios.delete(`/api/product/delete/${p._id}`)
+        const res = await axios.delete(`${API_BASE_URL}/product/delete/${p._id}`)
         const data = res.data;
         if(data.success === false){
             toast.error(data.message,{theme:'dark',autoClose:1000})

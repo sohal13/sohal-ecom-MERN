@@ -13,6 +13,7 @@ import useCategory from '../hooks/useCategory.jsx'
 
 const NavBar = () => {
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const { cartItems } = useSelector(state => state.cart);
     const { currentUser } = useSelector(state => state.user);
@@ -58,7 +59,7 @@ const NavBar = () => {
         if (confirmlogout === currentUser.email) {
             setLoading(true)
             try {
-                const logout = await axios.post('/api/auth/logout')
+                const logout = await axios.post(`${API_BASE_URL}/auth/logout`)
                 const data = logout.data;
                 if (data?.success === false) {
                     setLoading(false)

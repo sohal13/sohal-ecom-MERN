@@ -9,6 +9,8 @@ import { loginSuccess } from '../../../redux/User/userSlice';
 const AdminRout = () => {
 
     const {currentUser} = useSelector(state => state.user);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const dispach = useDispatch()
 
     const [isAdmin,setIsAdmin] = useState(currentUser)
@@ -16,7 +18,7 @@ const AdminRout = () => {
     useEffect(()=>{
       const verifyUser=async()=>{
         try {
-          const { data } = await axios.get('/api/auth/verifyuser');s
+          const { data } = await axios.get(`${API_BASE_URL}/auth/verifyuser`);
           if (data.success) {
               if (data.user) {
                   dispach(loginSuccess(data.user))

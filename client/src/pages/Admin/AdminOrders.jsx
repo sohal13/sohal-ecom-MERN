@@ -9,8 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { Select } from 'antd'
 const { Option } = Select;
 
+
+
 const AdminOrders = () => {
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
 
     const [allorders, setAllOrders] = useState([]);
@@ -20,7 +23,7 @@ const AdminOrders = () => {
     const getAllUserOrders = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/product/allorders`)
+            const res = await axios.get(`${API_BASE_URL}/product/allorders`)
             const data = res.data;
             if (data.success !== true) {
                 setLoading(false)
@@ -31,7 +34,7 @@ const AdminOrders = () => {
 
         } catch (error) {
             setLoading(false)
-            toast.error(error.response.data.message)
+            toast.error(error.response?.data?.message)
         }
     }
 
@@ -42,7 +45,7 @@ const AdminOrders = () => {
 const handelChnageStatus=async(orderId,value)=>{
     setLoading(true)
 try {
-    const {data}= await axios.put(`/api/product/order-update/${orderId}`,{orderStatus:value})
+    const {data}= await axios.put(`${API_BASE_URL}/product/order-update/${orderId}`,{orderStatus:value})
     if(data.success !== true){
     setLoading(false)
     toast.info(data?.message)

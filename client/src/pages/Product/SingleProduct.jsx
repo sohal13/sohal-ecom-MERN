@@ -20,7 +20,7 @@ const SingleProduct = () => {
     const { slug } = useParams()
     const dispatch = useDispatch();
     const {currentUser} = useSelector(state => state.user)
-
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     //const {cart,setuserCart} = userCart();
 
     const [product, setproduct] = useState([]);
@@ -34,7 +34,7 @@ const SingleProduct = () => {
     const getproduct = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/product/get/${slug}`)
+            const res = await axios.get(`${API_BASE_URL}/product/get/${slug}`)
             const data = res.data;
             if (data.success === false) {
                 setLoading(false)
@@ -65,7 +65,7 @@ const SingleProduct = () => {
     const getRelatedProduct = async (pid, cid) => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/product/related/${pid}/${cid}`)
+            const res = await axios.get(`${API_BASE_URL}/product/related/${pid}/${cid}`)
             const data = res.data
             setLoading(false)
             setRelatedP(data.product)

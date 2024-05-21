@@ -8,13 +8,14 @@ import { loginSuccess } from '../../../redux/User/userSlice';
 const PrivateRout = () => {
   const {currentUser} = useSelector(state => state.user);
   const dispach = useDispatch()
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const [isAdmin,setIsAdmin] = useState(currentUser)
 
   useEffect(()=>{
     const verifyUser=async()=>{
       try {
-        const { data } = await axios.get('/api/auth/verifyuser');
+        const { data } = await axios.get(`${API_BASE_URL}/auth/verifyuser`);
         if (data?.success) {
             if (data?.user) {
                 dispach(loginSuccess(data?.user))

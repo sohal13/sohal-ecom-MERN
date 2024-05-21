@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 const Users = () => {
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [allUser , setAllUser] = useState([]);
     const [loding,setLoading] = useState(false);
@@ -13,7 +14,7 @@ const Users = () => {
     const getAllUser=async()=>{
         setLoading(true)
         try {
-            const {data} = await axios.get(`/api/auth/alluser`) 
+            const {data} = await axios.get(`${API_BASE_URL}/auth/alluser`) 
             if(data.success !== true){
                 setLoading(false)
                 toast.info(data?.message)

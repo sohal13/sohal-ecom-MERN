@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const UserOrders = () => {
 
     const navigate = useNavigate();
-
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   
     const [orderDetail , setOrderDetail] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const UserOrders = () => {
     const getOrderProduct = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/product/myorders`);
+            const res = await axios.get(`${API_BASE_URL}/product/myorders`);
             const data = res.data;
             if (data.success === false) {
                 setLoading(false)

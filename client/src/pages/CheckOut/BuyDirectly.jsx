@@ -5,13 +5,15 @@ import {toast} from 'react-toastify'
 
 const BuyDirectly = ({directPurchaseItem}) => {
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const {currentUser} = useSelector(state => state.user)
     const [loading , setLoading] = useState(false)
 
     const handelCheckOut=async()=>{
         setLoading(true)
         try {
-            const res = await axios.post(`/api/stripe/create-checkout-session`,{
+            const res = await axios.post(`${API_BASE_URL}/stripe/create-checkout-session`,{
                 directPurchaseItem,
                 userId: currentUser?._id
             })

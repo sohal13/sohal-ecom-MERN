@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispach = useDispatch();
   const loaction = useLocation();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const [formData , setFormData] = useState({});
   const {loading , error}=useSelector((state)=>state.user);
@@ -22,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       dispach(loginStart())
-      const res = await axios.post('/api/auth/login',formData)
+      const res = await axios.post(`${API_BASE_URL}/auth/login`,formData)
       const data = await res.data;
       if(data.success === false){
         toast.error(data.message,{theme:"dark",autoClose:1000})

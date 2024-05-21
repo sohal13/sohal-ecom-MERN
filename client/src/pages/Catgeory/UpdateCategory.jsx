@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 const UpdateCategory = () => {
 
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const { slug } = useParams();
     const [category, setCatgeory] = useState();
     const [file, setFile] = useState(undefined);
@@ -48,7 +50,7 @@ const UpdateCategory = () => {
 
     const getThisCatgeory = async () => {
         try {
-            const res = await axios.get(`/api/category/${slug}`)
+            const res = await axios.get(`${API_BASE_URL}/category/${slug}`)
             const data = res.data;
             setCatgeory(data?.category)
         } catch (error) {
@@ -70,7 +72,7 @@ const UpdateCategory = () => {
     const handelSubmit=async(e)=>{
         e.preventDefault()
         try {
-            const res = await axios.put(`/api/category/update/${category._id}`,formData)
+            const res = await axios.put(`${API_BASE_URL}/category/update/${category._id}`,formData)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })

@@ -6,6 +6,7 @@ import { Spin } from 'antd';
 
 const Search = () => {
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const location = useLocation();
     const [product , setProduct] = useState([])
     const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ const Search = () => {
         setLoading(true);
         const queryParams = new URLSearchParams(location.search);
         const searchQuery = queryParams.toString();
-        const {data} = await axios.get(`/api/product/search?${searchQuery}`);
+        const {data} = await axios.get(`${API_BASE_URL}/product/search?${searchQuery}`);
         console.log(data);
         setLoading(false)
         setProduct(data)
