@@ -16,7 +16,7 @@ router.get('/related/:pid/:cid', relatedProduct)
 
 router.put('/update/:id',userVerify,isAdmin,updateProduct)
 
-router.get('/delete/:id',userVerify,isAdmin,deleteProduct)
+router.delete('/delete/:id',userVerify,isAdmin,deleteProduct)
 
 router.get('/bycategory/:slug' , getProductbyCatgeory)
 
