@@ -20,7 +20,7 @@ const Users = () => {
                 toast.info(data?.message)
             }
             setLoading(false)
-            setAllUser(data.users)
+            setAllUser([data.users])
         } catch (error) {
             setLoading(false)
             console.log(error);
@@ -44,7 +44,7 @@ console.log(allUser);
                                 Users
                                 </h1>
                                 <div className='flex flex-wrap gap-4'>
-                                    {allUser.map((u)=>(
+                                    {allUser?.map((u)=>(
                                         <div key={u._id} className='flex gap-2 justify-center items-center md:justify-between flex-col md:flex-row bg-gray-200 p-2 w-full'>
                                             {/*<img src='' alt={u.name}/>*/}
                                          
