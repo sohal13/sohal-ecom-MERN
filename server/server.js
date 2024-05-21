@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'https://sohal-ecom-frontend.vercel.app', // Add all your allowed origins here
+    origin: 'https://sohal-ecom.vercel.app', // Add all your allowed origins here
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,  // Include credentials
