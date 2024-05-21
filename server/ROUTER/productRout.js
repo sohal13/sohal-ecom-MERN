@@ -1,6 +1,6 @@
 import express from "express"
 import { isAdmin, userVerify } from "../MIDDLEWARE/authMiddleware.js";
-import { createProduct, deleteProduct, getAllProduct, getProduct, relatedProduct, searchProduct, updateProduct , getProductbyCatgeory, getMyOrder, getMyOrderDetail, getallOrderDetail, updateOrderDetail } from "../ROUTCONTROLER/productControler.js";
+import { createProduct, deleteProduct, getAllProduct, getProduct, relatedProduct, searchProduct, updateProduct , getProductbyCatgeory, getMyOrder, getMyOrderDetail, getallOrderDetail, updateOrderDetail, adminOrderDetail } from "../ROUTCONTROLER/productControler.js";
 
 const router = express.Router();
 
@@ -29,6 +29,9 @@ router.get('/allorders',userVerify,isAdmin,getallOrderDetail)
 
 //admin order status update
 router.put('/order-update/:id',userVerify,isAdmin,updateOrderDetail)
+
+//admin ordersdetils update
+router.get('/orderdetail/:id',userVerify,isAdmin,adminOrderDetail)
 
 
 

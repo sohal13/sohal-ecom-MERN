@@ -275,3 +275,25 @@ export const updateOrderDetail=async(req,res)=>{
         })
     }
 }
+
+
+//admin userorder details
+
+export const adminOrderDetail=async(req,res)=>{
+    try {
+        const {id} = req.params
+        const userOrder = await Order.findOne({
+           _id:id
+        }).populate("productsId").sort({ createdAt: -1 });
+        if (!userOrder) {
+            return res.status(404).send({ success: false, message: "no Order  found" });
+        }
+        res.send({ success: true, userOrder }).status(200);
+    } catch (error) {
+        console.log(`error in myorderProductControler ${error}`);
+        res.status(500).send({
+            success: false,
+            message: "Internul Server Error"
+        })
+    }
+}
