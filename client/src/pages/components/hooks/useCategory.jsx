@@ -8,7 +8,6 @@ export default function useCategory (){
     
     const [categoryes , setCategory] = useState([])
     const [loading ,setLoading] = useState(false);
-
         //get all cat
         const getAllCategory =async()=>{
             setLoading(true)

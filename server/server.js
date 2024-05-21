@@ -21,7 +21,8 @@ app.use(cookieParser());
 app.use(cors({
     origin: ['http://localhost:5173', 'https://sohal-ecom.vercel.app'],  // Add all your allowed origins here
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,  // Include credentials
   }));
 app.use(bodyParser.raw({ type: 'application/json' }));
 app.use(`/api/auth`,authRout)
