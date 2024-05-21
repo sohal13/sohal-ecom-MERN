@@ -16,6 +16,7 @@ const NavBar = () => {
 
     const { cartItems } = useSelector(state => state.cart);
     const { currentUser } = useSelector(state => state.user);
+    console.log(currentUser);
     const categoryes = useCategory();
  
     const [showSearchDropdown, setShowSearchDropdown] = useState(false);
@@ -76,7 +77,6 @@ const NavBar = () => {
         }
     }
 
-
     return (
         <div className={`max-w-[98%] mx-auto mt-2 h-12 shadow-lg font-sans `}>
             <div className='flex justify-between items-center h-full px-2'>
@@ -115,7 +115,7 @@ const NavBar = () => {
                         </Link>
                         {currentUser ? (
                             <Link to={'/profile'}><li className='flex justify-center cursor-pointer items-center  bg-blue-800 text-white  rounded-full md:w-10 md:h-10 w-9 h-9 hover:bg-orange-600'>
-                                <span className='md:text-5xl text-4xl md:mb-4 mb-3'>{currentUser.name[0]}</span>
+                                <span className='md:text-5xl text-4xl md:mb-4 mb-3'>{currentUser?.name[0]}</span>
                             </li>
                             </Link>
                         ) : (<Link to={'/login'}><li className='flex justify-center cursor-pointer items-center  bg-blue-800 text-white  rounded-md p-1 hover:bg-orange-600'>

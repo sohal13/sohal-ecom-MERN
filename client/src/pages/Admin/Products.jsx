@@ -46,7 +46,7 @@ const Products = () => {
             toast.error(data.message,{theme:'dark',autoClose:1000})
         }
         toast.success(data.message,{theme:'dark',autoClose:1000})
-        getAllCategory();
+        getAllProducts();
        }catch(error){
         console.log(error);
        }

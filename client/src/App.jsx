@@ -27,6 +27,7 @@ import Cart from './pages/Cart/Cart.jsx';
 import CheckOut from './pages/CheckOut/CheckOut.jsx';
 import OrdersDetails from './pages/USER/OrdersDetails.jsx';
 import AdminOrders from './pages/Admin/AdminOrders.jsx';
+import AdminOrdersDetail from './pages/Admin/AdminOrdersDetail';
 
 function App({}) {
 
@@ -62,6 +63,7 @@ function App({}) {
         <Route path='admin/update-category/:slug' element={<UpdateCategory/>}/>
         <Route path='admin/product' element={<Products/>}/>
         <Route path='admin/orders' element={<AdminOrders/>}/>
+        <Route path='admin/orders/details/:id' element={<AdminOrdersDetail/>}/>
         <Route path='admin/product/update/:slug' element={<UpdateProduct/>}/>
         <Route path='admin/users' element={<Users/>}/>
         </Route>
