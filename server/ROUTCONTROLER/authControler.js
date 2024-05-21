@@ -119,7 +119,6 @@ export const userLogOut=async(req,res)=>{
 }
 
 export const allgetUserControler=async(req,res)=>{
-    
     try {
      const users = await User.find({role: 0 }).sort({createdAt: -1});
         res.status(200).send({users, success:true})
@@ -131,3 +130,13 @@ export const allgetUserControler=async(req,res)=>{
         })
     }
 }
+
+
+//user verify 
+export const verifyUserControler=async(req,res)=>{
+    const userdata = await User.findById(req.user.id)
+    if(!userdata) return res.send({success:false, message:"Login First"}).status(200)
+    const { password, ...user } = userdata.toObject();
+    res.send({user , success:true}).status(200)
+}
+
