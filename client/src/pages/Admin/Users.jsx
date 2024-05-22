@@ -20,6 +20,7 @@ const Users = () => {
                 toast.info(data?.message)
             }
             setLoading(false)
+            console.log(data);
             setAllUser([data.users])
         } catch (error) {
             setLoading(false)

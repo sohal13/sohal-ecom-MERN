@@ -7,10 +7,10 @@ import { toast } from 'react-toastify';
 import { loginSuccess } from '../../../redux/User/userSlice';
 const PrivateRout = () => {
   const {currentUser} = useSelector(state => state.user);
-  const dispach = useDispatch()
+ // const dispach = useDispatch()
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-  const [isAdmin,setIsAdmin] = useState(currentUser)
+  /*const [isAdmin,setIsAdmin] = useState(currentUser)
 
   useEffect(()=>{
     const verifyUser=async()=>{
@@ -37,7 +37,7 @@ const PrivateRout = () => {
     verifyUser()
   },[])
  
-  console.log(isAdmin);
+  console.log(isAdmin);*/
   return (
    currentUser ? <Outlet/> : (<Navigate to={'/login'}/>)
   )

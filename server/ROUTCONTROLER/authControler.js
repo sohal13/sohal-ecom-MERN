@@ -140,3 +140,12 @@ export const verifyUserControler=async(req,res)=>{
     res.send({user , success:true}).status(200)
 }
 
+//user verify 
+export const verifyadminControler=async(req,res)=>{
+    const userdata = await User.findById(req.user.id)
+    if(!userdata) return res.send({success:false, message:"Login First as admin"}).status(200)
+    const { password, ...user } = userdata.toObject();
+    res.send({user , success:true}).status(200)
+}
+
+

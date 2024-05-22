@@ -2,6 +2,7 @@ import User from "../SCHEMA/userSchema.js";
 import JWT from 'jsonwebtoken'
 
 export const userVerify=async(req,res,next)=>{
+    console.log(req.cookies);
     const token = req.cookies.accesToken;
     if(!token) return res.send({success:false ,message:"User not Authorized"}).status(401)
 
@@ -17,6 +18,7 @@ export const userVerify=async(req,res,next)=>{
 
 export const isAdmin =async (req,res,next)=>{
     try {
+        console.log(req.user.id);
         const user = await User.findById(req.user.id)
         if(user.role !== 1){
             return res.send({success:false , message:"UnAuthorized Admin Access"}).status(401)

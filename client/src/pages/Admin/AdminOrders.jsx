@@ -25,6 +25,7 @@ const AdminOrders = () => {
         try {
             const res = await axios.get(`${API_BASE_URL}/product/allorders`)
             const data = res.data;
+            console.log(data);
             if (data.success !== true) {
                 setLoading(false)
                 toast.info(data.message)

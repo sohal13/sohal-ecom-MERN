@@ -6,7 +6,7 @@ import categoryRout from './ROUTER/categoryRout.js'
 import productRout from './ROUTER/productRout.js'
 import stripeRout from './ROUTER/Stripe.js'
 import cookieParser from "cookie-parser";
-import bodyParser from 'body-parser';
+//import bodyParser from 'body-parser';
 //import path from 'path'
 import cors from 'cors'
 
@@ -15,16 +15,15 @@ import cors from 'cors'
 dotenv.config();
 const app = express();
 
-//middleware
-app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
     origin: ['https://sohal-ecom.vercel.app','http://localhost:5173'], // Add all your allowed origins here
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,  // Include credentials
   }));
-app.use(bodyParser.raw({ type: 'application/json' }));
+//middleware
+app.use(express.json());
+app.use(cookieParser());
 app.use(`/api/auth`,authRout)
 app.use(`/api/category`,categoryRout)
 app.use('/api/product',productRout)

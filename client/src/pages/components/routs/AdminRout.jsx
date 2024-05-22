@@ -6,20 +6,22 @@ import { Outlet ,Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { loginSuccess } from '../../../redux/User/userSlice';
 
+
 const AdminRout = () => {
 
     const {currentUser} = useSelector(state => state.user);
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-    const dispach = useDispatch()
+/*    const dispach = useDispatch()
 
     const [isAdmin,setIsAdmin] = useState(currentUser)
 
     useEffect(()=>{
       const verifyUser=async()=>{
         try {
-          const { data } = await axios.get(`${API_BASE_URL}/auth/verifyuser`);
-          if (data.success) {
+          const { data } = await axios.get(`${API_BASE_URL}/auth/verifyadmin`);
+          console.log(data);
+          if (data.success === true) {
               if (data.user) {
                   dispach(loginSuccess(data.user))
                   setIsAdmin(data.user);
@@ -40,7 +42,7 @@ const AdminRout = () => {
     verifyUser()
     },[])
    
-    console.log(isAdmin);
+    console.log(isAdmin);*/
 
   return (
     currentUser.role === 1 ? <Outlet/> : (<Navigate to={'/'}/>)
