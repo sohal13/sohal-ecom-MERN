@@ -79,7 +79,7 @@ export const loginControler =async(req,res)=>{
             httpOnly: true,
             expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
             sameSite: 'None' ,
-            secure: process.env.NODE_ENV === 'production', 
+            secure: true, 
         })
         .status(200).send({
             success:true,
