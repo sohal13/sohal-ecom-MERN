@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
-import axios from 'axios';
+import axiosInst from '../../axiosInst.js';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { Spin } from 'antd';
@@ -15,7 +15,7 @@ const Home = () => {
   const getAllProducts = async () => {
     setLoading(true)
     try {
-        const { data } = await axios.get(`/api/product/getall`);
+        const { data } = await axiosInst.get(`/api/product/getall`);
         if (data.success === false) {
             setLoading(false)
             toast.error(data.message, { theme: 'dark', autoClose: 1000 })
