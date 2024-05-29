@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://sohal-ecom-mern-backend.onrender.com",
+  "proxy": "http://localhost:4040",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "host":"vite --host"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
