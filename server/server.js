@@ -16,7 +16,7 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.set('trust proxy', 1);
+//app.set('trust proxy', 1);
 
 /*const allowedOrigins = ['https://sohal-ecom.vercel.app' , 'http://localhost:5173'];
 
@@ -33,13 +33,13 @@ app.use(cors({
     exposedHeaders: ["set-cookie"],
     credentials: true, // Include credentials
 }));
-  
+  */
 //middleware
 app.use(`/api/auth`,authRout)
 app.use(`/api/category`,categoryRout)
 app.use('/api/product',productRout)
 app.use('/api/stripe',stripeRout)
-*/
+
 
 app.use(express.static(path.join(__dirname, `/client/dist`)));
 
