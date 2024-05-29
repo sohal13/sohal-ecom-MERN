@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInst from '../../axiosInst.js';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import {loginStart , loginSuccess ,loginFailed } from '../../redux/User/userSlice';
@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
       dispach(loginStart())
-      const res = await axios.post(`/api/auth/login`,formData)
+      const res = await axiosInst.post(`/api/auth/login`,formData)
       const data = await res.data;
       if(data.success === false){
         toast.error(data.message,{theme:"dark",autoClose:1000})
