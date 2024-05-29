@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import AdminMenu from '../components/pageCmpnt/AdminMenu'
-import axiosInst from '../../axiosInst.js';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +22,7 @@ const AdminOrders = () => {
     const getAllUserOrders = async () => {
         setLoading(true)
         try {
-            const res = await axiosInst.get(`/api/product/allorders`)
+            const res = await axios.get(`/api/product/allorders`)
             const data = res.data;
             console.log(data);
             if (data.success !== true) {
@@ -45,7 +45,7 @@ const AdminOrders = () => {
 const handelChnageStatus=async(orderId,value)=>{
     setLoading(true)
 try {
-    const {data}= await axiosInst.put(`/api/product/order-update/${orderId}`,{orderStatus:value})
+    const {data}= await axios.put(`/api/product/order-update/${orderId}`,{orderStatus:value})
     if(data.success !== true){
     setLoading(false)
     toast.info(data?.message)

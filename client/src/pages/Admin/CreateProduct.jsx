@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const CreateProduct = () => {
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const { currentUser } = useSelector(state => state.user);
     console.log(currentUser._id);

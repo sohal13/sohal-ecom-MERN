@@ -6,10 +6,10 @@ import authRout from './ROUTER/auth.js'
 import categoryRout from './ROUTER/categoryRout.js'
 import productRout from './ROUTER/productRout.js'
 import stripeRout from './ROUTER/Stripe.js'
-//import path from 'path'
-import cors from 'cors'
+import path from 'path'
+//import cors from 'cors'
 
-///const __dirname = path.resolve();
+const __dirname = path.resolve();
 
 dotenv.config();
 const app = express();
@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.set('trust proxy', 1);
 
-const allowedOrigins = ['https://sohal-ecom.vercel.app' , 'http://localhost:5173'];
+/*const allowedOrigins = ['https://sohal-ecom.vercel.app' , 'http://localhost:5173'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -39,12 +39,13 @@ app.use(`/api/auth`,authRout)
 app.use(`/api/category`,categoryRout)
 app.use('/api/product',productRout)
 app.use('/api/stripe',stripeRout)
+*/
 
-//app.use(express.static(path.join(__dirname, `/client/dist`)));
+app.use(express.static(path.join(__dirname, `/client/dist`)));
 
-/*app.get('*',(req,res)=>{
+app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'client','dist','index.html'))
-})*/
+})
 
 app.get('*',(req,res)=>{
     res.send({message:"Server is Wokring", success:true})

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import AdminMenu from '../components/pageCmpnt/AdminMenu'
-import axiosInst from '../../axiosInst.js';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Users = () => {
     const getAllUser=async()=>{
         setLoading(true)
         try {
-            const {data} = await axiosInst.get(`/api/auth/alluser`) 
+            const {data} = await axios.get(`/api/auth/alluser`) 
             if(data.success !== true){
                 setLoading(false)
                 toast.info(data?.message)

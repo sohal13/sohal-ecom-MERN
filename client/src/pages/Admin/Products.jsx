@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import AdminMenu from '../components/pageCmpnt/AdminMenu'
-import axiosInst from '../../axiosInst.js';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
     const navigate = useNavigate();
+  
 
     const [allproduct, setAllProduct] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -17,7 +18,7 @@ const Products = () => {
     const getAllProducts = async () => {
         setLoading(true)
         try {
-            const { data } = await axiosInst.get(`/api/product/getall`,{
+            const { data } = await axios.get(`/api/product/getall`,{
             });
             if (data.success === false) {
                 setLoading(false)
@@ -42,7 +43,7 @@ const Products = () => {
     const confirmlogout = window.prompt("type Your 'Email' To Delete This Product");
     if (confirmlogout === currentUser.email) {
     try{
-        const res = await axios.delete(`${API_BASE_URL}/product/delete/${p._id}`)
+        const res = await axios.delete(`/api/product/delete/${p._id}`)
         const data = res.data;
         if(data.success === false){
             toast.error(data.message,{theme:'dark',autoClose:1000})
