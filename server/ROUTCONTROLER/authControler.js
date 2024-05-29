@@ -80,6 +80,7 @@ export const loginControler =async(req,res)=>{
             expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
             sameSite: 'None' ,
             secure: true, 
+            domain: '.sohal-ecom-mern-backend.onrender.com',
         })
         .status(200).send({
             success:true,
