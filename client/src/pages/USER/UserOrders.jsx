@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import UserMenu from '../components/pageCmpnt/UserMenu'
-import axios from 'axios';
+import axiosInst from '../../axiosInst.js';
 import { toast } from 'react-toastify';
 import { Spin } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const UserOrders = () => {
     const getOrderProduct = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`/api/product/myorders`);
+            const res = await axiosInst.get(`/api/product/myorders`);
             const data = res.data;
             if (data.success === false) {
                 setLoading(false)

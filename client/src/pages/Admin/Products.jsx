@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import AdminMenu from '../components/pageCmpnt/AdminMenu'
-import axios from 'axios';
+import axiosInst from '../../axiosInst.js';
 import { toast } from 'react-toastify';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [allproduct, setAllProduct] = useState([]);
     const [loading, setLoading] = useState(false)
@@ -18,7 +17,7 @@ const Products = () => {
     const getAllProducts = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`/api/product/getall`,{
+            const { data } = await axiosInst.get(`/api/product/getall`,{
             });
             if (data.success === false) {
                 setLoading(false)

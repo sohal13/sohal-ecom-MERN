@@ -1,5 +1,5 @@
 
-import axios from 'axios';
+import axiosInst from '../../../axiosInst.js';
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Outlet ,Navigate } from 'react-router-dom'
@@ -14,7 +14,7 @@ const PrivateRout = () => {
   useEffect(()=>{
     const verifyUser=async()=>{
       try {
-        const { data } = await axios.get(`/api/auth/verifyuser`);
+        const { data } = await axiosInst.get(`/api/auth/verifyuser`);
         if (data?.success === true) {
             if (data.user.role === 1) {
                 dispach(loginSuccess(data.user))
