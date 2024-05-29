@@ -103,7 +103,7 @@ const CreateProduct = () => {
         e.preventDefault();
         setLoading(true)
         try {
-            const res = await axios.post(`${API_BASE_URL}/product/create`, formData);
+            const res = await axios.post(`/api/product/create`, formData);
             const data = res.data;
             if (data.success === false) {
                 setLoading(false);
@@ -123,7 +123,7 @@ const CreateProduct = () => {
     //get all cat
     const getAllCategory = async () => {
         try {
-            const res = await axios.get(`${API_BASE_URL}/category/categoryes`)
+            const res = await axios.get(`/api/category/categoryes`)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })

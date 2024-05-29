@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"https://sohal-ecom-mern-backend.onrender.com/api",
+  "proxy":"https://sohal-ecom-mern-backend.onrender.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

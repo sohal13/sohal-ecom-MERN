@@ -7,7 +7,6 @@ import { Spin } from 'antd'
 const CategoryProduct = () => {
 
     const {slug} = useParams();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [product , setProduct] = useState([])
     const [loading , setLoading] = useState(false)
@@ -15,7 +14,7 @@ const CategoryProduct = () => {
     const getProduct = async()=>{
         setLoading(true)
         try {
-            const res = await axios.get(`${API_BASE_URL}/product/bycategory/${slug}`)
+            const res = await axios.get(`/api/product/bycategory/${slug}`)
             const data = res.data;
             setLoading(false)
             setProduct(data?.product)

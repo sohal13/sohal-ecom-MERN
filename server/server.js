@@ -1,12 +1,11 @@
 import express from "express"
 import dotenv from "dotenv"
+import cookieParser from 'cookie-parser'
 import { dbConnection } from "./DB/dbConnection.js";
 import authRout from './ROUTER/auth.js'
 import categoryRout from './ROUTER/categoryRout.js'
 import productRout from './ROUTER/productRout.js'
 import stripeRout from './ROUTER/Stripe.js'
-import cookieParser from "cookie-parser";
-//import bodyParser from 'body-parser';
 //import path from 'path'
 import cors from 'cors'
 
@@ -15,15 +14,27 @@ import cors from 'cors'
 dotenv.config();
 const app = express();
 
+app.use(cookieParser());
+app.use(express.json());
+app.set('trust proxy', 1);
+
+const allowedOrigins = ['https://sohal-ecom.vercel.app' , 'http://localhost:5173'];
+
 app.use(cors({
-    origin: ['https://sohal-ecom.vercel.app','http://localhost:5173'], // Add all your allowed origins here
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },// Add your allowed origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,  // Include credentials
-  }));
+    exposedHeaders: ["set-cookie"],
+    credentials: true, // Include credentials
+}));
+  
 //middleware
-app.use(express.json());
-app.use(cookieParser());
 app.use(`/api/auth`,authRout)
 app.use(`/api/category`,categoryRout)
 app.use('/api/product',productRout)

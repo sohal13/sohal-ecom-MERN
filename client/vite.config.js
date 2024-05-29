@@ -8,7 +8,6 @@ export default defineConfig({
       '/api': {
         target:'https://sohal-ecom-mern-backend.onrender.com',
         changeOrigin: true,
-        secure: true, 
       },
     },
     host: true,  // This should be outside the proxy configuration

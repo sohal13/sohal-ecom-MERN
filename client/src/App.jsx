@@ -28,6 +28,7 @@ import CheckOut from './pages/CheckOut/CheckOut.jsx';
 import OrdersDetails from './pages/USER/OrdersDetails.jsx';
 import AdminOrders from './pages/Admin/AdminOrders.jsx';
 import AdminOrdersDetail from './pages/Admin/AdminOrdersDetail';
+import UpdateUser from './pages/Admin/UpdateUser';
 
 function App({}) {
 
@@ -66,6 +67,8 @@ function App({}) {
         <Route path='admin/orders/details/:id' element={<AdminOrdersDetail/>}/>
         <Route path='admin/product/update/:slug' element={<UpdateProduct/>}/>
         <Route path='admin/users' element={<Users/>}/>
+        <Route path='admin/users/update/:id' element={<UpdateUser/>}/>
+
         </Route>
       </Routes>
       <ToastContainer/>

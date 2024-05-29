@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import User from '../SCHEMA/userSchema.js'
-import JWT from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 //register RoutControler
 export const registerControler = async (req,res) => {
@@ -72,12 +72,19 @@ export const loginControler =async(req,res)=>{
             }).status(401)
         }
     
-        const token = JWT.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'100 years'})
-        const {password:pass, ...rest}=user._doc;
-        res.cookie('accesToken',token,{httpOnly:true,expires:new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000)})
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '100 years' });
+        const { password: pass, ...rest } = user._doc;
+
+        res.cookie('accessToken', token, { // Corrected cookie name
+            httpOnly: true,
+            expires: new Date(Date.now() + 100 * 365 * 24 * 60 * 60 * 1000),
+            sameSite: 'None' ,
+            secure: process.env.NODE_ENV === 'production', 
+        })
         .status(200).send({
             success:true,
             message:"User Login Succesfull",
+            token,
             rest
         });
     } catch (error) {
@@ -93,6 +100,7 @@ export const loginControler =async(req,res)=>{
 
 export const testControler=(req,res)=>{
     try {
+        console.log(req.user);
         console.log("middleware");
     } catch (error) {
         console.log(error);
@@ -104,7 +112,7 @@ export const testControler=(req,res)=>{
 export const userLogOut=async(req,res)=>{
     
     try {
-        res.cookie("accesToken",'',{
+        res.cookie("accessToken",'',{
             maxAge:0
         })
         res.status(200).send({success:true ,message:"User LogOut"})
@@ -140,12 +148,43 @@ export const verifyUserControler=async(req,res)=>{
     res.send({user , success:true}).status(200)
 }
 
-//user verify 
-export const verifyadminControler=async(req,res)=>{
-    const userdata = await User.findById(req.user.id)
-    if(!userdata) return res.send({success:false, message:"Login First as admin"}).status(200)
-    const { password, ...user } = userdata.toObject();
-    res.send({user , success:true}).status(200)
+export const getUserControler=async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const singleUser = await User.findById(id)
+        const { password, ...user } = singleUser.toObject();
+        res.status(200).send({
+            success: true,
+            message: "Update User Succesfully!1",
+            user
+        })
+    } catch (error) {
+        console.log(`error in updateUserControler ${error}`);
+        res.status(500).send({
+            success: false,
+            message: "Internul Server Error"
+        })
+    }
+}
+
+
+export const UpdateUserControler=async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const updatedUser = await User.findByIdAndUpdate(id ,{...req.body},{new:true})
+        const { password, ...user } = updatedUser.toObject();
+        res.status(200).send({
+            success: true,
+            message: "Update User Succesfully!1",
+            user
+        })
+    } catch (error) {
+        console.log(`error in updateUserControler ${error}`);
+        res.status(500).send({
+            success: false,
+            message: "Internul Server Error"
+        })
+    }
 }
 
 

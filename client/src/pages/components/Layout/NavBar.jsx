@@ -13,11 +13,9 @@ import useCategory from '../hooks/useCategory.jsx'
 
 const NavBar = () => {
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const { cartItems } = useSelector(state => state.cart);
     const { currentUser } = useSelector(state => state.user);
-    console.log(currentUser);
     const categoryes = useCategory();
  
     const [showSearchDropdown, setShowSearchDropdown] = useState(false);
@@ -55,11 +53,9 @@ const NavBar = () => {
 
 
     const handelLogout=async()=>{
-        const confirmlogout = window.prompt("type 'Email' To LOGOUT");
-        if (confirmlogout === currentUser.email) {
             setLoading(true)
             try {
-                const logout = await axios.post(`${API_BASE_URL}/auth/logout`)
+                const logout = await axios.post(`/api/auth/logout`)
                 const data = logout.data;
                 if (data?.success === false) {
                     setLoading(false)
@@ -73,9 +69,6 @@ const NavBar = () => {
                 setLoading(false)
                 console.log(error);
             }
-        } else {
-            toast.info("LogOut Cancelled",{autoClose:1000 , theme:"dark"})
-        }
     }
 
     return (

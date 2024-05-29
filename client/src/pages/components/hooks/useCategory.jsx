@@ -2,9 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react'
 
 export default function useCategory (){
-
-
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     
     const [categoryes , setCategory] = useState([])
     const [loading ,setLoading] = useState(false);
@@ -12,7 +9,7 @@ export default function useCategory (){
         const getAllCategory =async()=>{
             setLoading(true)
             try{
-             const res = await axios.get(`${API_BASE_URL}/category/categoryes`)
+             const res = await axios.get(`/api/category/categoryes`)
              const data = res.data;
              if(data.success === false){
             setLoading(false)

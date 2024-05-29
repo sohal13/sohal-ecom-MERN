@@ -8,8 +8,6 @@ import { Spin } from 'antd';
 
 const Home = () => {
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
   const [product , setProduct ] = useState([]);
   const [loading , setLoading] = useState(false)
 
@@ -17,7 +15,7 @@ const Home = () => {
   const getAllProducts = async () => {
     setLoading(true)
     try {
-        const { data } = await axios.get(`${API_BASE_URL}/product/getall`);
+        const { data } = await axios.get(`/api/product/getall`);
         if (data.success === false) {
             setLoading(false)
             toast.error(data.message, { theme: 'dark', autoClose: 1000 })

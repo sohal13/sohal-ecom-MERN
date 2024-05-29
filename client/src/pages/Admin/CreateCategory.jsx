@@ -51,7 +51,7 @@ const CreateCategory = () => {
     const handelSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${API_BASE_URL}/category/create-category`,formData)
+            const res = await axios.post(`/api/category/create-category`,formData)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
@@ -73,7 +73,7 @@ const CreateCategory = () => {
     //get all cat
     const getAllCategory = async () => {
         try {
-            const res = await axios.get(`${API_BASE_URL}/category/categoryes`)
+            const res = await axios.get(`/api/category/categoryes`)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
@@ -90,7 +90,7 @@ const CreateCategory = () => {
     //handel Delete Catgeory
     const handelDeleteCategroy = async (c) => {
         try {
-            const res = await axios.delete(`${API_BASE_URL}/category/delete/${c._id}`)
+            const res = await axios.delete(`/api/category/delete/${c._id}`)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })

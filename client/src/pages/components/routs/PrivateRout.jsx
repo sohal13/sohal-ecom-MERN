@@ -7,39 +7,35 @@ import { toast } from 'react-toastify';
 import { loginSuccess } from '../../../redux/User/userSlice';
 const PrivateRout = () => {
   const {currentUser} = useSelector(state => state.user);
- // const dispach = useDispatch()
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+ const dispach = useDispatch()
 
-  /*const [isAdmin,setIsAdmin] = useState(currentUser)
+  const [user,setuser] = useState(currentUser)
 
   useEffect(()=>{
     const verifyUser=async()=>{
       try {
-        const { data } = await axios.get(`${API_BASE_URL}/auth/verifyuser`);
-        if (data?.success) {
-            if (data?.user) {
-                dispach(loginSuccess(data?.user))
-                setIsAdmin(data?.user);
+        const { data } = await axios.get(`/api/auth/verifyuser`);
+        if (data?.success === true) {
+            if (data.user.role === 1) {
+                dispach(loginSuccess(data.user))
             } else {
-                setIsAdmin(currentUser);
-                toast.error("Login As User To Access");
+                setuser(data.user);
             }
         } else {
-            setIsAdmin(false);
-            toast.error("Login As User To Access");
+            setuser(false);
         }
     } catch (error) {
         console.error("Error verifying user:", error);
-        setIsAdmin(false);
+        setuser(false);
         toast.error("Login As User To Access");
     }
     }
     verifyUser()
   },[])
  
-  console.log(isAdmin);*/
+  console.log(user);
   return (
-   currentUser ? <Outlet/> : (<Navigate to={'/login'}/>)
+   currentUser && user ? <Outlet/> : (<Navigate to={'/login'}/>)
   )
 }
 

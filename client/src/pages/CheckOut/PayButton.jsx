@@ -5,14 +5,13 @@ import { useSelector } from 'react-redux'
 const PayButton = ({cartItems}) => {
 
     const {currentUser} = useSelector(state => state.user)
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [loading , setLoading] = useState(false)
 
     const handelCheckOut=async()=>{
         setLoading(true)
         try {
-            const res = await axios.post(`${API_BASE_URL}/stripe/create-checkout-session`,{
+            const res = await axios.post(`/api/stripe/create-checkout-session`,{
                 cartItems,
                 userId: currentUser._id
             })

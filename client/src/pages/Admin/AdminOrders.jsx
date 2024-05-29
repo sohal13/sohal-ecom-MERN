@@ -13,7 +13,6 @@ const { Option } = Select;
 
 const AdminOrders = () => {
 
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
 
     const [allorders, setAllOrders] = useState([]);
@@ -23,7 +22,7 @@ const AdminOrders = () => {
     const getAllUserOrders = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`${API_BASE_URL}/product/allorders`)
+            const res = await axios.get(`/api/product/allorders`)
             const data = res.data;
             console.log(data);
             if (data.success !== true) {

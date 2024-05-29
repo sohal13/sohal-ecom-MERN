@@ -8,7 +8,6 @@ import { Spin } from 'antd';
 const AdminOrdersDetail = () => {
 
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   const { id } = useParams()
   const [orderDetail, setOrderDetail] = useState([]);
@@ -17,7 +16,7 @@ const AdminOrdersDetail = () => {
   const getOrderProduct = async () => {
     setLoading(true)
     try {
-      const res = await axios.get(`${API_BASE_URL}/product/orderdetail/${id}`);
+      const res = await axios.get(`/api/product/orderdetail/${id}`);
 
       const data = res.data;
       if (data.success === false) {

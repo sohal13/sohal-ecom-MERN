@@ -12,7 +12,6 @@ const UpdateProduct = () => {
 
     const { currentUser } = useSelector(state => state.user)
     const navigate = useNavigate();
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const prmsid = useParams()
 
     const [category, setCategory] = useState([]);
@@ -27,7 +26,7 @@ const UpdateProduct = () => {
     //get all cat
     const getAllCategory = async () => {
         try {
-            const res = await axios.get(`${API_BASE_URL}/category/categoryes`)
+            const res = await axios.get(`/api/category/categoryes`)
             const data = res.data;
             if (data.success === false) {
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
@@ -46,7 +45,7 @@ const UpdateProduct = () => {
     useEffect(() => {
         const getListData = async () => {
             const slug = prmsid.slug
-            const Listing = await axios.get(`${API_BASE_URL}/product/get/${slug}`)
+            const Listing = await axios.get(`/api/product/get/${slug}`)
             const data = await Listing.data;
             if (data.succcess === false) {
                 console.log(data.error);
@@ -133,7 +132,7 @@ console.log("Data =",updatedData);
             if (formData.price < formData.discountprice) return setphotoError("discount price must be lower then price")
             setLoading(true);
             setphotoError(false)
-            const res = await axios.put(`${API_BASE_URL}/product/update/${formData._id}`, {
+            const res = await axios.put(`/api/product/update/${formData._id}`, {
                 ...updatedData,
             })
             const data = await res.data;

@@ -248,6 +248,7 @@ export const getMyOrderDetail=async(req,res)=>{
 
 export const getallOrderDetail=async(req,res)=>{
     try {
+        console.log(req.user);
         const orders = await Order.find({}).populate("productsId").sort({ createdAt: -1 })
         if(!orders) return res.status(404).send({ success: false, message: "no Order  found" });
         res.send({success: true, orders }).status(200)

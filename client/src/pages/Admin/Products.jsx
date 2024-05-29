@@ -18,7 +18,8 @@ const Products = () => {
     const getAllProducts = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`${API_BASE_URL}/product/getall`);
+            const { data } = await axios.get(`/api/product/getall`,{
+            });
             if (data.success === false) {
                 setLoading(false)
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
