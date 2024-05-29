@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon server/server.js\" \"stripe listen --forward-to https://sohal-ecom-mern-backend.onrender.com/api/stripe/webhook\"",
     "start": "node server/server.js && stripe listen --forward-to https://sohal-ecom-mern-backend.onrender.com/api/stripe/webhook",
-    "build": "npm run build-backend && npm run build-frontend",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
     "build-backend": "npm install",
     "build-frontend": "npm install --prefix client && npm run build --prefix client"
   },
