@@ -5,15 +5,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 // https://vitejs.dev/config/
 export default defineConfig({
-
-  server: {
-    proxy: {
-      '/api': {
-        target:'http://localhost:4040',
-        changeOrigin: true,
-      },
-    },
-    host: true,  // This should be outside the proxy configuration
-  },
   plugins: [react()],
+  server:{
+    proxy:{
+      '/api':'https://sohal-ecom-mern-backend.onrender.com',
+    }
+  }
 });
