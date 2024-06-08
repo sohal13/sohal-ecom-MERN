@@ -8,7 +8,12 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      '/api':'https://sohal-ecom-mern-backend.onrender.com',
+      '/api':{
+        target: "https://sohal-ecom-mern-backend.onrender.com/", // Backend URL from environment variable
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
     }
   }
 });
