@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.set('trust proxy', 1);
 
-const allowedOrigins = ['https://sohal-ecom.vercel.app' , 'http://localhost:5173'];
+const allowedOrigins = ['https://sohal-ecom.vercel.app' , '*'];
 
 app.use(cors({
     origin: function (origin, callback) {
