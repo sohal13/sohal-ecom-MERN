@@ -24,7 +24,7 @@ const Register = () => {
 try {
     if(formData.password !== formData.confpassword) return toast.error("Password And Conf.Password Not Matching",{theme:'dark',autoClose: 1000})
     setLoading(true)
-    const res = await axios.post('/api/auth/register',formData)
+    const res = await axios.post(`/api/auth/register`,formData)
       const data = await res.data;
       if(data.success===false){
         setLoading(false)

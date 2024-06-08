@@ -3,17 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:4040",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "host":"vite --host"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "antd": "^5.16.4",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "firebase": "^10.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

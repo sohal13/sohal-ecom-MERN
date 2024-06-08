@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { Select } from 'antd'
 const { Option } = Select;
 
+
+
 const AdminOrders = () => {
 
     const navigate = useNavigate();
@@ -22,6 +24,7 @@ const AdminOrders = () => {
         try {
             const res = await axios.get(`/api/product/allorders`)
             const data = res.data;
+            console.log(data);
             if (data.success !== true) {
                 setLoading(false)
                 toast.info(data.message)
@@ -31,7 +34,7 @@ const AdminOrders = () => {
 
         } catch (error) {
             setLoading(false)
-            toast.error(error.response.data.message)
+            toast.error(error.response?.data?.message)
         }
     }
 

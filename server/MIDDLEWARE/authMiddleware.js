@@ -1,11 +1,10 @@
 import User from "../SCHEMA/userSchema.js";
-import JWT from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 export const userVerify=async(req,res,next)=>{
-    const token = req.cookies.accesToken;
+    const token = req.cookies.accessToken;
     if(!token) return res.send({success:false ,message:"User not Authorized"}).status(401)
-
-    JWT.verify(token ,process.env.JWT_SECRET,(err,user)=>{
+    jwt.verify(token ,process.env.JWT_SECRET,(err,user)=>{
         if(err) return res.send({success:false , message:"Uncot Error Middleware"}).status(403)
         req.user = user;
         next();

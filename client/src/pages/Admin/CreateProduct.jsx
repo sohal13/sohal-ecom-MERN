@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const CreateProduct = () => {
     const navigate = useNavigate();
+
     const { currentUser } = useSelector(state => state.user);
     console.log(currentUser._id);
     const [files, setFile] = useState({});

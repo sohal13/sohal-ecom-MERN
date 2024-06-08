@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.post('/create-checkout-session', userVerify, async (req, res) => {
   const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
-
   try {
     if (req.body.directPurchaseItem) {
       const productIds = await req.body.directPurchaseItem._id;
@@ -191,7 +190,6 @@ router.post('/create-checkout-session', userVerify, async (req, res) => {
 
 router.post('/webhook', express.raw({ type: 'application/json' }), async(req, res) => {
   let endpointSecret;
-  console.log("in webHook");
   //endpointSecret = "whsec_58b95a06d79b824149ca3b4e0ad959621213abf77c0bdb0bad541bd23638990e";
   const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
   const sig = req.headers['stripe-signature'];

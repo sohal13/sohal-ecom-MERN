@@ -7,6 +7,7 @@ import { Spin } from 'antd'
 const CategoryProduct = () => {
 
     const {slug} = useParams();
+
     const [product , setProduct] = useState([])
     const [loading , setLoading] = useState(false)
 

@@ -22,12 +22,14 @@ const Login = () => {
     e.preventDefault();
     try {
       dispach(loginStart())
-      const res = await axios.post('/api/auth/login',formData)
+      const res = await axios.post(`/api/auth/login`,formData)
       const data = await res.data;
       if(data.success === false){
         toast.error(data.message,{theme:"dark",autoClose:1000})
         dispach(loginFailed(data.message));
       }else{
+        const { token, rest } = data;
+        document.cookie = `accessToken=${token}; path=/; max-age=${100 * 365 * 24 * 60 * 60};`;
         dispach(loginSuccess(data.rest))
       navigate(loaction.state || '/')
     }

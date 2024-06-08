@@ -248,6 +248,7 @@ export const getMyOrderDetail=async(req,res)=>{
 
 export const getallOrderDetail=async(req,res)=>{
     try {
+        console.log(req.user);
         const orders = await Order.find({}).populate("productsId").sort({ createdAt: -1 })
         if(!orders) return res.status(404).send({ success: false, message: "no Order  found" });
         res.send({success: true, orders }).status(200)
@@ -269,6 +270,28 @@ export const updateOrderDetail=async(req,res)=>{
         res.send({success: true, orders , message:"Delivery Status Updated!!" }).status(200)
     } catch (error) {
         console.log(`error in orderUpdateProductControler ${error}`);
+        res.status(500).send({
+            success: false,
+            message: "Internul Server Error"
+        })
+    }
+}
+
+
+//admin userorder details
+
+export const adminOrderDetail=async(req,res)=>{
+    try {
+        const {id} = req.params
+        const userOrder = await Order.findOne({
+           _id:id
+        }).populate("productsId").sort({ createdAt: -1 });
+        if (!userOrder) {
+            return res.status(404).send({ success: false, message: "no Order  found" });
+        }
+        res.send({ success: true, userOrder }).status(200);
+    } catch (error) {
+        console.log(`error in myorderProductControler ${error}`);
         res.status(500).send({
             success: false,
             message: "Internul Server Error"

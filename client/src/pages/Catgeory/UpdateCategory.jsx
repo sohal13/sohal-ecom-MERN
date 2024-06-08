@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 const UpdateCategory = () => {
 
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     const { slug } = useParams();
     const [category, setCatgeory] = useState();
     const [file, setFile] = useState(undefined);

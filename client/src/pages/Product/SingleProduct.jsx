@@ -20,7 +20,6 @@ const SingleProduct = () => {
     const { slug } = useParams()
     const dispatch = useDispatch();
     const {currentUser} = useSelector(state => state.user)
-
     //const {cart,setuserCart} = userCart();
 
     const [product, setproduct] = useState([]);

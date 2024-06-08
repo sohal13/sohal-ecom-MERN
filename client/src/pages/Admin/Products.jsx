@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
     const navigate = useNavigate();
+  
+
     const [allproduct, setAllProduct] = useState([]);
     const [loading, setLoading] = useState(false)
     const { currentUser } = useSelector(state => state.user);
@@ -16,7 +18,8 @@ const Products = () => {
     const getAllProducts = async () => {
         setLoading(true)
         try {
-            const { data } = await axios.get(`/api/product/getall`);
+            const { data } = await axios.get(`/api/product/getall`,{
+            });
             if (data.success === false) {
                 setLoading(false)
                 toast.error(data.message, { theme: 'dark', autoClose: 1000 })
@@ -46,7 +49,7 @@ const Products = () => {
             toast.error(data.message,{theme:'dark',autoClose:1000})
         }
         toast.success(data.message,{theme:'dark',autoClose:1000})
-        getAllCategory();
+        getAllProducts();
        }catch(error){
         console.log(error);
        }

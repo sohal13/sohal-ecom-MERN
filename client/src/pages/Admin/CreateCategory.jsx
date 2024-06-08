@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateCategory = () => {
 
     const navigate = useNavigate();
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     const [category, setCategory] = useState([]);
     const [formData, setFormData] = useState({});

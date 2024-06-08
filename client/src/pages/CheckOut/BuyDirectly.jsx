@@ -1,27 +1,27 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import {toast} from 'react-toastify'
 
 const BuyDirectly = ({directPurchaseItem}) => {
 
     const {currentUser} = useSelector(state => state.user)
     const [loading , setLoading] = useState(false)
-    console.log(directPurchaseItem);
+
     const handelCheckOut=async()=>{
         setLoading(true)
         try {
             const res = await axios.post(`/api/stripe/create-checkout-session`,{
                 directPurchaseItem,
-                userId: currentUser._id
+                userId: currentUser?._id
             })
             const data = res.data;
-            console.log(res);
             if(data.url){
                 setLoading(false)
                 window.location.href = data.url
             }else{
                 setLoading(false)
-                console.log("Error");
+                toast.error(data.message);
             }
         } catch (error) {
             setLoading(false)
